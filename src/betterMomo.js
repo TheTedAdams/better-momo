@@ -1,12 +1,14 @@
 (function($) {
+	var modules = [],
+		css = '';
 
 	/*******************
 	 * DECLARE MODULES *
 	 *******************/
 
 	/* MODULE: Time Tracking */
-	function addTimeTracking() {
-		// Global Variables
+	modules.push(function TimeTracking () {
+		// Module Variables
 		var activeTimer = 0,
 			css = ".js-trackTime { cursor:pointer;display:inline-block;vertical-align:middle;width:12px;height:12px;background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABxSURBVChTY6AE+EAx0SABiP8DcT8Qc4AECAGYBhA+D8QaQIwBmKA0OjAA4tNAnALm4QDINiDj5UAsAMRggMsGZCADxERp+APELUDsCMQPQALoANlJj4HYAYgxADYbNgCxIRAfAPPwgAggzoEwqQYYGACqahYQId2KYAAAAABJRU5ErkJggg==') no-repeat center center }" +
 				  ".js-trackTime.active { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAjSURBVChTYxj8YD8Q/wfiBCgGsUFicMAEpYkGw0HDoAMMDADrZgRHMFH1hQAAAABJRU5ErkJggg=='); }",
@@ -42,10 +44,11 @@
 				$i.val(+$i.val() + 1);
 			}, 360000);
 		});
-	}
+	});
 
 	/***************
 	 * RUN MODULES *
 	 ***************/
-	addTimeTracking();
+	while(modules.length)
+		modules.shift().call();
 })(jQuery);
