@@ -36,6 +36,6 @@
 		$t.addClass('active');
 		activeTimer = window.setInterval(function() {
 			$i.val(+$i.val() + 1);
-		}, 360000);
+		}, 2000);
 	});
 })();
