@@ -34,31 +34,20 @@
 			var $t = $(this);
 			$t.html('<span class="Red">' + $t.html() + '</span>');
 		});
-		var day;
-		switch (t.getDay()) {
-			case 0:
-				day = 'Sunday';
-				break;
-			case 1:
-				day = 'Monday';
-				break;
-			case 2:
-				day = 'Tuesday';
-				break;
-			case 3:
-				day = 'Wednesday';
-				break;
-			case 4:
-				day = 'Thursday';
-				break;
-			case 5:
-				day = 'Friday';
-				break;
-			case 6:
-				day = 'Saturday';
-				break;
-		}
-		$('.Day img[src$=' + day + '.gif]').each(function() {
+
+		if (!e.length)
+			return; // Today is not in this week. Don't highlight day image
+
+		var dayStrings = {};
+		dayStrings[0] = 'Sunday';
+		dayStrings[1] = 'Monday';
+		dayStrings[2] = 'Tuesday';
+		dayStrings[3] = 'Wednesday';
+		dayStrings[4] = 'Thursday';
+		dayStrings[5] = 'Friday';
+		dayStrings[6] = 'Saturday';
+
+		$('.Day img[src$=' + dayStrings[t.getDay()] + '.gif]').each(function() {
 			var $t = $(this);
 			$t.attr('src', $t.attr('src').replace('.gif', 'On.gif'));
 		});
@@ -108,6 +97,29 @@
 				}, interval);
 			});
 		}
+	});
+
+	/*
+	 * MODULE: Pretty MOMO
+	 * DESCRIPTION: Makes MOMO a little prettier (I think)
+	 */
+	modules.push(function PrettyMOMO () {
+		// Styles
+		css += 'html { box-sizing:border-box; } *, *:before, *:after { box-sizing:inherit; }';
+		css += 'body { text-align:center; background:#333; }';
+		css += '.page-outer { display:inline-block; text-align:left; border:none; margin:40px 10px 10px 10px; max-width:1050px; }';
+		css += '#header { border-bottom:none; }';
+		css += '#header div:nth-child(2) img { margin-top:-5px; }';
+		css += '#container { border-top-left-radius:10px; border-bottom-right-radius: 10px; }';
+		css += '#provokeimage { padding-left:40px; }';
+
+		// DOM Manipulation
+		$('img[alt=LAST WEEK]').closest('td').attr('align', 'left'); // Who needs classes? Selecting on ALT baby!
+		var $d = $('#DatePicker').addClass('Hand');
+		$d.siblings('a').remove() // Crawlin' that DOM like a little monkey
+						.prependTo($d.parent())
+						.css('display', 'block')
+						.parent().siblings().css('vertical-align', 'top');
 	});
 
 	/***************
