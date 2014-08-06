@@ -111,7 +111,7 @@
 		css += '#header { border-bottom:none; }';
 		css += '#container { border-top-left-radius:10px; border-bottom-right-radius: 10px; }';
 		css += '#provokeimage { padding-left:40px; }';
-		css += '#ProvokeLogo { float:right; margin:7px -10px 0 0; background-image:url(\'Resources/images/Branding/Provoke.gif\'); width:157px; height:64px; background-position-x:100%; position:relative; }';
+		css += '#ProvokeLogo { float:right; margin:7px -10px 0 0; background-image:url(\'Resources/images/Branding/Provoke.gif\'); width:157px; height:64px; background-position-x:100%; position:relative; border-top-left-radius:10px; border-bottom-left-radius:10px; }';
 		css += '#ProvokeLogo:after { position:absolute; content: \'\'; top:100%; right:0; width:10px; height:10px; border:5px solid transparent; border-top-color:rgb(158,181,194); border-left-color:rgb(158,181,194); }';
 
 		// DOM Manipulation
