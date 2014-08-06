@@ -10,7 +10,7 @@
 	/*
 	 * MODULE: Day Correction
 	 * DESCRIPTION: Corrects current day for those not living in NZ
-	 * 				Should run BEFORE Time Tracking module
+	 *              Should run BEFORE Time Tracking module
 	 */
 	modules.push(function DayCorrection() {
 		// TODO: Move to correct week (Friday in US starts at wrong week)
@@ -106,20 +106,23 @@
 	modules.push(function PrettyMOMO () {
 		// Styles
 		css += 'html { box-sizing:border-box; } *, *:before, *:after { box-sizing:inherit; }';
-		css += 'body { text-align:center; background:#333; }';
-		css += '.page-outer { display:inline-block; text-align:left; border:none; margin:40px 10px 10px 10px; max-width:1050px; }';
+		css += 'body { text-align:center; background-color:#333; }';
+		css += '.page-outer { display:inline-block; text-align:left; border:none; margin:40px 20px 20px 20px; max-width:1050px; min-width:801px; }';
 		css += '#header { border-bottom:none; }';
-		css += '#header div:nth-child(2) img { margin-top:-5px; }';
 		css += '#container { border-top-left-radius:10px; border-bottom-right-radius: 10px; }';
 		css += '#provokeimage { padding-left:40px; }';
+		css += '#ProvokeLogo { float:right; margin:7px -10px 0 0; background-image:url(\'Resources/images/Branding/Provoke.gif\'); width:157px; height:64px; background-position-x:100%; position:relative; }';
+		css += '#ProvokeLogo:after { position:absolute; content: \'\'; top:100%; right:0; width:10px; height:10px; border:5px solid transparent; border-top-color:rgb(158,181,194); border-left-color:rgb(158,181,194); }';
 
 		// DOM Manipulation
 		$('img[alt=LAST WEEK]').closest('td').attr('align', 'left'); // Who needs classes? Selecting on ALT baby!
-		var $d = $('#DatePicker').addClass('Hand');
-		$d.siblings('a').remove() // Crawlin' that DOM like a little monkey
+		var $d = $('#DatePicker');
+		$d.addClass('Hand')
+	   	  .siblings('a').remove() // Crawlin' that DOM like a little monkey
 						.prependTo($d.parent())
 						.css('display', 'block')
 						.parent().siblings().css('vertical-align', 'top');
+		$('#header div:nth-child(2) > img').replaceWith('<div id="ProvokeLogo"></div>');
 	});
 
 	/***************
